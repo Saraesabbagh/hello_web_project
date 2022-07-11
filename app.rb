@@ -7,10 +7,37 @@ class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+  #GET /
+  #Room path (homepage, index page)
+    get '/' do
+      return "Hello World!"
+    end
 
-  get '/' do
-    "Hello World"
-  end
+    get '/hello' do
+      name = params[:name]
+      return "Hi there #{name}!"
+    end
+
+    post '/submit' do
+      name = params[:name]
+      message = params[:message]
+      return "Thanks #{name}, you sent this message: #{message}"
+    end
+
 
 
 end
+
+#incoming request Get/todos/1
+#when this comes in the only code that will be executed will be the second option below. 
+
+# incoming request Get / posts 
+# since this is not one of the options below it will send back an error instead of executing anyting. 
+
+# Routes
+
+#Get / -> execute some code
+#Get /todos/1 -> execute some different piece of code
+
+#POST / todos -> execute some different code. 
+#We write tese as part of our application class and runs in the background ready to recieve a request. 
