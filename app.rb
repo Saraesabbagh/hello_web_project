@@ -10,19 +10,30 @@ class Application < Sinatra::Base
   #GET /
   #Room path (homepage, index page)
     get '/' do
-      return "Hello World!"
+      # return "Hello World!"
+      return erb(:index)
     end
 
     get '/hello' do
-      name = params[:name]
-      return "Hi there #{name}!"
+      @name = params[:name]
+      return erb(:index)
     end
+
+    # get '/names' do
+    #   names = params[:names]
+    #   return "#{names}"
+    # end
 
     post '/submit' do
       name = params[:name]
       message = params[:message]
       return "Thanks #{name}, you sent this message: #{message}"
     end
+
+   post '/sort-names' do
+    names = params[:names]
+    return names.split(",").sort.join(", ")
+   end
 
 
 
